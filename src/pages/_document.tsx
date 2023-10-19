@@ -18,7 +18,7 @@ export default function Document() {
         <meta name="application-name" content="Hyperlane Warp Template UI" />
         <meta
           name="keywords"
-          content="Hyperlane Warp Route Template UI Token Bridge Interchain App"
+          content="xUSD by Banker Smith App"
         />
         <meta
           name="description"

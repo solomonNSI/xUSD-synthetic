@@ -27,13 +27,13 @@ export function WalletEnvSelectionModal({ isOpen, close }: { isOpen: boolean; cl
         >
           Ethereum
         </EnvButton>
-        <EnvButton
+        {/* <EnvButton
           onClick={onClickEnv(ProtocolType.Sealevel)}
           subTitle="a Solana"
           logoChainId={chainMetadata.solanadevnet.chainId}
         >
           Solana
-        </EnvButton>
+        </EnvButton> */}
       </div>
     </Modal>
   );

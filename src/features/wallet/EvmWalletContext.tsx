@@ -23,7 +23,7 @@ import { getWagmiChainConfig } from '../chains/metadata';
 const { chains, provider } = configureChains(getWagmiChainConfig(), [publicProvider()]);
 
 const connectorConfig = {
-  appName: 'Hyperlane Warp Template',
+  appName: 'xUSD by BankerSmith',
   chains,
   projectId: config.walletConnectProjectId,
 };

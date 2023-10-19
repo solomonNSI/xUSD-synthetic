@@ -1,10 +1,12 @@
 import type { NextPage } from 'next';
 import { useState } from 'react';
-
 import { SolidButton } from '../components/buttons/SolidButton';
+import { LendBrwTipCard } from '../components/tip/LendBrwTipCard';
+import { MintBurnTipCard } from '../components/tip/MintBurnTipCard';
 import { TipCard } from '../components/tip/TipCard';
 import AnotherTokenCard from '../features/another/AnotherTokenCard';
 import { TransferTokenCard } from '../features/transfer/TransferTokenCard';
+import { XUSDTokenCard } from '../features/xUSD/xUSDTokenCard';
 
 const Button = ({ onClick, title, text }) => (
   <SolidButton classes="py-1.5 px-2.5" onClick={onClick} title={title}>
@@ -13,24 +15,34 @@ const Button = ({ onClick, title, text }) => (
 );
 
 const Home: NextPage = () => {
-  const [currentPage, setCurrentPage] = useState('tip'); // Default to 'tip';
+  const [currentPage, setCurrentPage] = useState('mint'); // Default to 'tip';
 
   return (
     <div className="space-y-2">
       <div className="flex flex-row space-x-2">
-        <Button onClick={() => setCurrentPage('tip')} title="crosschain" text="Cross Chain" />
-        <Button onClick={() => setCurrentPage('transfer')} title="mintburn" text="Mint / Burn" />
-        <Button onClick={() => setCurrentPage('another')} title="lendborrow" text="Lend / Borrow" />
+        <Button onClick={() => setCurrentPage('mint')} title="mintburn" text="Mint / Burn" />
+        <Button onClick={() => setCurrentPage('cross')} title="crosschain" text="Cross Chain" />
+        <Button onClick={() => setCurrentPage('soon')} title="lendborrow" text="Lend / Borrow" />
       </div>
       <div style={{ minHeight: '300px' }}>
-        {currentPage === 'tip' && (
+        {currentPage === 'mint' && (
+          <>
+            <MintBurnTipCard/>
+            <XUSDTokenCard />
+          </>
+        )}
+        {currentPage === 'cross' && (
           <>
             <TipCard />
             <TransferTokenCard />
           </>
         )}
-        {currentPage === 'transfer' && <TransferTokenCard />}
-        {currentPage === 'another' && <AnotherTokenCard />}
+        {currentPage === 'soon' && (
+          <>
+            <LendBrwTipCard/>
+            <AnotherTokenCard />
+          </>
+        )}
       </div>
     </div>
   );
