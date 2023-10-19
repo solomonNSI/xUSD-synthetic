@@ -145,7 +145,7 @@ function ChainSelectSection({
         <div className="flex mb-6 sm:space-x-1.5">
           <ChevronIcon classes="hidden sm:block" />
           <ChevronIcon />
-          <ChevronIcon />
+          {/* <ChevronIcon /> */}
         </div>
         <SwapChainsButton disabled={isReview} />
       </div>
