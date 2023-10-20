@@ -1,11 +1,10 @@
 export const links = {
-  home: 'https://www.hyperlane.xyz',
-  explorer: 'https://explorer.hyperlane.xyz',
-  discord: 'https://discord.gg/VK9ZUy3aTV',
-  github: 'https://github.com/hyperlane-xyz/hyperlane-warp-ui-template',
+  home: 'https://www.bankersmith.com',
+  explorer: 'https://bit.ly/bankersmithMVPGuide',
+  github: 'https://github.com/Banker-Smith',
   docs: 'https://docs.hyperlane.xyz',
   gasDocs: 'https://docs.hyperlane.xyz/docs/protocol/interchain-gas-payments',
-  chains: 'https://docs.hyperlane.xyz/docs/resources/domains',
-  twitter: 'https://twitter.com/hyperlane_xyz',
-  blog: 'https://medium.com/hyperlane',
+  memo: 'https://bit.ly/bankersmithmemo',
+  twitter: 'https://x.com/bankersmith?s=11',
+  blog: 'http://bit.ly/bankersmithpitch',
 };

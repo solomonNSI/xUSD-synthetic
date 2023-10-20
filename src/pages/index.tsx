@@ -70,7 +70,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="space-y-2">
-      <div className="flex flex-row space-x-2">
+      <div className="flex flex-row space-x-4">
       <Button
         onClick={() => setCurrentPage('mint')}
         title="mintburn"
@@ -103,7 +103,6 @@ const Home: NextPage = () => {
               <MintBurnTipCard />
               <WideChevron direction="s" height="10%" width="10" color="red" rounded={true} />
               <WideChevron direction="s" height="10%" width="10" color="red" rounded={true} />
-              <WideChevron direction="s" height="10%" width="10" color="red" rounded={true} />
             </div>
             <XUSDMintTokenCard tokenPrices={tokenPrices} tokenOptions={tokenOptions}/>
           </>
@@ -112,7 +111,6 @@ const Home: NextPage = () => {
           <>
             <div className="flex items-center flex-col justify-center"> {/* Centering container */}
               <MintBurnTipCard />
-              <WideChevron direction="s" height="10%" width="10" color="red" rounded={true} />
               <WideChevron direction="s" height="10%" width="10" color="red" rounded={true} />
               <WideChevron direction="s" height="10%" width="10" color="red" rounded={true} />
             </div>

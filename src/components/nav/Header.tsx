@@ -10,8 +10,8 @@ export function Header() {
       <div className="flex items-center justify-between">
       <Link href="/" className="py-2 flex items-center">
         <Image src={Logo} width={90} alt="" style={{ borderRadius: '50%' }} />
-        <h1 style={{ marginLeft: '0.5rem', fontWeight: 'bold',}}>
-          <span style={{ color: 'darkred' }}>xUSD</span> by Banker Smith
+        <h1 style={{ marginLeft: '1rem', fontWeight: 'bold', color: '#1ff1e1e'}}>
+          <span style={{ color: 'darkred' }}> xUSD</span>  by Banker Smith
         </h1>
       </Link>
         <div className="flex flex-col items-end md:flex-row-reverse md:items-start gap-2">

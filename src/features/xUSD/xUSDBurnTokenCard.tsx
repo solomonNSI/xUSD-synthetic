@@ -20,35 +20,38 @@ export function XUSDBurnTokenCard({ tokenPrices, tokenOptions }: {
   
 
   return (
-    <Card classes="w-100 sm:w-[31rem] relative">
-      <div className="relative flex items-start justify-between z-20">
+    <Card classes="w-100 sm:w-[31rem] sm:h-[20rem] justify-center items-center flex">
+      <div className="relative flex items-center justify-center z-20">
         <form className="flex flex-col">
           <div className="flex flex-col space-y-4">
-            <div className="flex justify-center space-x-2">
-              <fieldset className="flex flex-col pr-2 h-full bg-slate-50 border border-purple-400 rounded">
-                <input
-                  type="text"
-                  placeholder="0.0"
-                  value={ xUSDValue}
-                  onChange={(ev) => setxUSDValue(parseFloat(ev.target.value))}
-                />
-              </fieldset>
+            <div className="flex items-end space-x-2">
+              <input
+                type="number"
+                placeholder="0.0"
+                value={xUSDValue}
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                onChange={(ev) => setxUSDValue(parseFloat(ev.target.value))}
+              />
+              <span></span>xUSD
+            </div>
+            <div className='flex justify-center space-x-2'>
+              <span style={{ marginRight: '10px' }}>Amount of</span>
               <select
+                className="uppercase text-white bg-blue-500 rounded px-3 py-1 cursor-pointer"
                 value={selectedToken}
                 onChange={(ev) => setSelectedToken(ev.target.value)}
               >
                 {tokenOptions.map((token) => (
                   <option key={token} value={token}>
-                    {token}
+                    {token.toUpperCase()}
                   </option>
                 ))}
               </select>
-            </div>
-            <div className='flex justify-center space-x-2'>
-              <span>Amount of {selectedToken} : {tokenValue}</span>
+              <span>: {tokenValue}</span>
             </div>
           </div>
-          <button className="w-full rounded-xl py-4 bg-slate-100 text-xl" >
+          <br/>
+          <button className="rounded-xl py-2 bg-red-200 text-lg text-white" >
             Burn xUSD
           </button>
         </form>

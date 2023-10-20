@@ -10,12 +10,12 @@ export function AppLayout({ children }: PropsWithChildren) {
       <Head>
         {/* https://nextjs.org/docs/messages/no-document-viewport-meta */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>xUSD by Banker Smith</title>
+        <title> xUSD by Banker Smith</title>
       </Head>
       <div id="app-content" className="h-full min-h-screen w-full min-w-screen">
         <div className="max-w-screen-xl mx-auto flex flex-col justify-between min-h-screen px-14">
           <Header />
-          <main className="w-full flex-1 my-4 flex items-center justify-center">{children}</main>
+          <main className="w-full flex-1 my-4 flex justify-center">{children}</main>
           <Footer />
         </div>
       </div>

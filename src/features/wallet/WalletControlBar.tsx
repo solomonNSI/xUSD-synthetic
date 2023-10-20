@@ -19,7 +19,7 @@ export function WalletControlBar() {
   const { readyAccounts } = useAccounts();
   const isSsr = useIsSsr();
 
-  const numReady = readyAccounts.length;
+  const numReady = readyAccounts?.length;
 
   if (isSsr) {
     // https://github.com/wagmi-dev/wagmi/issues/542#issuecomment-1144178142
