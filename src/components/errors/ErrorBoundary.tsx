@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Component } from 'react';
 
-import { links } from '../../consts/links';
 import ErrorIcon from '../../images/icons/error-circle.svg';
 import { logger } from '../../utils/logger';
 
@@ -34,15 +33,7 @@ export class ErrorBoundary extends Component<any, ErrorBoundaryState> {
             <Image src={ErrorIcon} width={80} height={80} alt="" />
             <h1 className="mt-5 text-lg">Fatal Error Occurred</h1>
             <div className="mt-5 text-sm">{details}</div>
-            <a
-              href={links.discord}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 text-sm"
-            >
-              For support, join the{' '}
-              <span className="underline underline-offset-2">Hyperlane Discord</span>{' '}
-            </a>
+              For support, send us an email
           </div>
         </div>
       );
