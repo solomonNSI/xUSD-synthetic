@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { links } from '../../consts/links';
-import Logo from '../../images/logos/app-logo.svg';
 import Discord from '../../images/logos/discord.svg';
 import Github from '../../images/logos/github.svg';
 import Medium from '../../images/logos/medium.svg';
@@ -13,14 +12,12 @@ export function Footer() {
     <footer className="py-4 opacity-80">
       <div className="flex flex-row justify-between items-center gap-6 sm:gap-0">
         <div className="flex items-center pt-2">
-          <div className="flex">
-            <Image src={Logo} width={45} height={45} alt="" />
-          </div>
           <div className="hidden sm:flex flex-col ml-3">
-            <p className="leading-6">
-              Go interchain
-              <br />
-              with Hyperlane
+            <p className="leading-6 font-bold">
+              Copyright @ BankerSmith, 2023
+            </p>
+            <p className="italic">
+              built with Hyperlane template
             </p>
           </div>
         </div>

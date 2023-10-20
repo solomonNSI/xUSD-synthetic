@@ -13,7 +13,7 @@ export function AppLayout({ children }: PropsWithChildren) {
         <title>xUSD by Banker Smith</title>
       </Head>
       <div id="app-content" className="h-full min-h-screen w-full min-w-screen">
-        <div className="max-w-screen-xl mx-auto flex flex-col justify-between min-h-screen px-4">
+        <div className="max-w-screen-xl mx-auto flex flex-col justify-between min-h-screen px-14">
           <Header />
           <main className="w-full flex-1 my-4 flex items-center justify-center">{children}</main>
           <Footer />
