@@ -10,6 +10,7 @@ import AnotherTokenCard from '../features/another/AnotherTokenCard';
 import { TransferTokenCard } from '../features/transfer/TransferTokenCard';
 import { XUSDBurnTokenCard } from '../features/xUSD/xUSDBurnTokenCard';
 import { XUSDMintTokenCard } from '../features/xUSD/xUSDMintTokenCard';
+import { logger } from "../utils/logger";
 
 const Button = ({ onClick, title, text, chosen }) => (
   <button
@@ -55,7 +56,9 @@ const Home: NextPage = () => {
           });
           const data = await response.toJSON();
           prices[token] = parseFloat((data.usdPrice).toFixed(2));
-        } catch (error) {}
+        } catch (error) {
+          logger.error(error);
+        }
       }
       setEthToUsdRate(true);
       setTokenPrices(prices);
