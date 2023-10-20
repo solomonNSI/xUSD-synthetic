@@ -20,11 +20,11 @@ export function XUSDMintTokenCard({ tokenPrices, tokenOptions }: {
   
 
   useEffect(() => {
-    if(tokenValue != 0) {
+    if (tokenValue !== 0) {
       setxUSDValue(parseFloat((tokenValue * tokenPrices[selectedToken]).toFixed(2)));
     }
-  }, [selectedToken])
-
+  }, [selectedToken, tokenValue, tokenPrices]);
+  
   return (
 <Card classes="w-100 sm:w-[31rem] relative">
   <div className="relative flex items-start justify-center z-20"> {/* Center items */}

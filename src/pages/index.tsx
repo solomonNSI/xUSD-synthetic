@@ -2,7 +2,7 @@ import { WideChevron } from "@hyperlane-xyz/widgets";
 import { EvmChain } from "@moralisweb3/common-evm-utils";
 import Moralis from "moralis";
 import type { NextPage } from 'next';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { LendBrwTipCard } from '../components/tip/LendBrwTipCard';
 import { MintBurnTipCard } from '../components/tip/MintBurnTipCard';
 import { TipCard } from '../components/tip/TipCard';
@@ -30,12 +30,13 @@ const Home: NextPage = () => {
   const [ethToUsdRate, setEthToUsdRate] = useState(false);
   const tokenOptions = ['eth', 'matic', 'ape', 'fil'];
   
-  const tokenAddresses = {
+  const tokenAddresses = useMemo(() => ({
     'eth' : "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
     'matic': "0xcc42724c6683b7e57334c4e856f4c9965ed682bd",
     'ape' : "0x4d224452801aced8b2f0aebe155379bb5d594381", 
     'fil': "0x0d8ce2a99bb6e3b7db580ed848240e4a0f9ae153",
-  }
+  }), []);
+  
   useEffect( () => {
     const fetchPrices = async () => {
       if (!Moralis.Core.isStarted) {
@@ -54,12 +55,9 @@ const Home: NextPage = () => {
           });
           const data = await response.toJSON();
           prices[token] = parseFloat((data.usdPrice).toFixed(2));
-        } catch (error) {
-
-        }
+        } catch (error) {}
       }
       setEthToUsdRate(true);
-
       setTokenPrices(prices);
     };
     if (ethToUsdRate === false) {
