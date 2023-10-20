@@ -39,7 +39,6 @@ const Home: NextPage = () => {
   useEffect( () => {
     const fetchPrices = async () => {
       if (!Moralis.Core.isStarted) {
-        console.log("env", process.env.MORALIS)
         await Moralis.start({
           apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjdiNDI5NTljLTAxMTktNDExNS05MjgxLTFiMzE0MjI5ZGIzNSIsIm9yZ0lkIjoiMzE0ODk5IiwidXNlcklkIjoiMzIzNzc3IiwidHlwZUlkIjoiMzhlNWJjZjAtNTU2Ni00ZThmLWJjNGQtNzRhZjVhN2IxMDAwIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE2ODI2ODQ1NzIsImV4cCI6NDgzODQ0NDU3Mn0.Q98x5X5kKwZbFqf3JFQBKyu_9_BVrj18rZph8xsHgVc",
         });
@@ -56,17 +55,17 @@ const Home: NextPage = () => {
           const data = await response.toJSON();
           prices[token] = parseFloat((data.usdPrice).toFixed(2));
         } catch (error) {
-          console.error(`Error fetching ${token} price:`, error);
+
         }
       }
       setEthToUsdRate(true);
-      console.log("prices: ", prices);
+
       setTokenPrices(prices);
     };
     if (ethToUsdRate === false) {
-      fetchPrices();
+      void fetchPrices();
     }
-  }, [ethToUsdRate]);
+  }, [ethToUsdRate, tokenAddresses]);
 
   return (
     <div className="space-y-2">

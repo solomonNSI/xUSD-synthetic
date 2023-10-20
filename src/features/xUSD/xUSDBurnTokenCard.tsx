@@ -10,13 +10,14 @@ export function XUSDBurnTokenCard({ tokenPrices, tokenOptions }: {
   const [selectedToken, setSelectedToken] = useState('eth');
 
   useEffect(() => {
-    if(!xUSDValue || isNaN(xUSDValue)){
+    if (!xUSDValue || isNaN(xUSDValue)) {
       setTokenValue(0);
       setxUSDValue(0);
-    } else if(xUSDValue && !isNaN(xUSDValue)) {
+    } else if (xUSDValue && !isNaN(xUSDValue)) {
       setTokenValue(parseFloat((xUSDValue / tokenPrices[selectedToken]).toFixed(2)));
     }
-  }, [xUSDValue]);
+  }, [xUSDValue, tokenPrices, selectedToken]);
+  
 
   return (
     <Card classes="w-100 sm:w-[31rem] relative">

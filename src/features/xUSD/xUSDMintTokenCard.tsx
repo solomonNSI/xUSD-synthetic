@@ -10,13 +10,14 @@ export function XUSDMintTokenCard({ tokenPrices, tokenOptions }: {
   const [selectedToken, setSelectedToken] = useState('eth');
 
   useEffect(() => {
-    if(!tokenValue || isNaN(tokenValue)){
+    if (!tokenValue || isNaN(tokenValue)) {
       setTokenValue(0);
       setxUSDValue(0);
-    } else if(tokenValue && !isNaN(tokenValue)) {
+    } else if (tokenValue && !isNaN(tokenValue)) {
       setxUSDValue(parseFloat((tokenValue * tokenPrices[selectedToken]).toFixed(2)));
     }
-  }, [tokenValue]);
+  }, [tokenValue, tokenPrices, selectedToken]);
+  
 
   useEffect(() => {
     if(tokenValue != 0) {
