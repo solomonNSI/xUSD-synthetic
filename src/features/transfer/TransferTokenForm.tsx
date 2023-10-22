@@ -46,6 +46,7 @@ import { useTokenTransfer } from './useTokenTransfer';
 
 export function TransferTokenForm({ tokenRoutes }: { tokenRoutes: RoutesMap }) {
   const chainCaip2Ids = useRouteChains(tokenRoutes);
+  // get the initial values (first token route in the list)
   const initialValues = useFormInitialValues(chainCaip2Ids, tokenRoutes);
 
   // Flag for if form is in input vs review mode

@@ -39,7 +39,6 @@ export function useTokenTransfer(onDone?: () => void) {
   const activeAccounts = useAccounts();
   const activeChains = useActiveChains();
   const transactionFns = useTransactionFns();
-
   const [isLoading, setIsLoading] = useState(false);
 
   // TODO implement cancel callback for when modal is closed?

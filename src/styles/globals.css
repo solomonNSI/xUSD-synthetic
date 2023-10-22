@@ -45,7 +45,8 @@ Background
   display: block;
   width: 100vw;
   height: 100vh;
-  background-color: #f2f6ff;
+  /* background-color: #f2f6ff; */
+  background-color: rgb(239 246 255);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;

@@ -9,6 +9,12 @@ import { TokenMetadataWithHypTokens } from '../types';
 import { computeTokenRoutes, fetchRemoteHypTokens } from './fetch';
 import { RoutesMap } from './types';
 
+/**
+ * Custom React hook to fetch and manage token routes data.
+* It fetches data about token routes and provides information about loading state and errors.
+* Token routes represent the available routes for token transfers between different chains and tokens.
+* @returns {Object} An object containing isLoading, error, and tokenRoutes properties.
+*/
 export function useTokenRoutes() {
   const {
     isLoading,
@@ -33,6 +39,12 @@ export function useTokenRoutes() {
   return { isLoading, error, tokenRoutes };
 }
 
+/**
+ * Custom React hook to extract and sort the chain IDs from token routes.
+ * It returns an array of ChainCaip2Ids, sorted with collateral chains first.
+ * @param {RoutesMap} tokenRoutes - The token routes data to extract chains from.
+ * @returns {ChainCaip2Id[]} An array of ChainCaip2Ids sorted by priority.
+ */
 export function useRouteChains(tokenRoutes: RoutesMap): ChainCaip2Id[] {
   return useMemo(() => {
     const allCaip2Ids = Object.keys(tokenRoutes) as ChainCaip2Id[];
