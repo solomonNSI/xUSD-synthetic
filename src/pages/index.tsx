@@ -6,7 +6,17 @@ import AnotherTokenCard from '../features/another/AnotherTokenCard';
 import { TransferTokenCard } from '../features/transfer/TransferTokenCard';
 import { XUSDBurnTokenCard } from '../features/xUSD/xUSDBurnTokenCard';
 import XUSDMintTokenCard from '../features/xUSD/xUSDMintTokenCard';
-import { Button } from "./Button";
+
+export const Button = ({ onClick, title, text, chosen }) => (
+  <button
+    className={`sm:text-lg text-lg py-1.5 px-2.5`}
+    style={{ textDecoration: chosen ? 'underline' : 'none' }}
+    onClick={onClick}
+    title={title}
+  >
+    {text}
+  </button>
+);
 
 const Home: NextPage = () => {
   const [currentPage, setCurrentPage] = useState('mint'); // Default to 'tip';
