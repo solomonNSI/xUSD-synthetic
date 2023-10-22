@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { links } from '../../consts/links';
 import Twitter from '../../images/logos/twitter.svg';
 
@@ -20,7 +19,6 @@ export function Footer() {
         </div>
         <div className="flex">
           <div className="flex flex-col">
-            <FooterLink href={links.home} text="About" />
             <FooterLink href={links.explorer} text="Guideline" />
           </div>
           <div className="flex flex-col ml-16">
