@@ -22,7 +22,6 @@ export function Footer() {
           <div className="flex flex-col">
             <FooterLink href={links.home} text="About" />
             <FooterLink href={links.explorer} text="Guideline" />
-            <FooterLink href={links.blog} text="Pitch Deck" />
           </div>
           <div className="flex flex-col ml-16">
             <FooterIconLink href={links.twitter} imgSrc={Twitter} text="Twitter" />
