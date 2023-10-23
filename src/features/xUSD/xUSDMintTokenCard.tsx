@@ -143,6 +143,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
       {isMintSuccess && (
         <div>
           <span>Succesfully minted xUSD</span>
+          <span> add token with this address: 0x9435c5C968F1fc6B8fB709b6612FE89d977d204c </span>
         </div>
       )}
       {!isGASMintSuccess && (
@@ -150,9 +151,6 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
           <span>Problem with gas right now, try minting xUSD later</span>
         </div>
       )}
-      <div>
-        add token with this address: "0x9435c5C968F1fc6B8fB709b6612FE89d977d204c"
-      </div>
     </Card>
   );
 }
