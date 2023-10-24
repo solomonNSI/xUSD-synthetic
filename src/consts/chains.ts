@@ -1,4 +1,5 @@
 import { ChainMap, ChainMetadata, chainMetadata } from '@hyperlane-xyz/sdk';
+import { ProtocolType } from '@hyperlane-xyz/utils';
 
 // A map of chain names to ChainMetadata
 export const chains: ChainMap<ChainMetadata & { mailbox?: Address }> = {
@@ -27,6 +28,20 @@ export const chains: ChainMap<ChainMetadata & { mailbox?: Address }> = {
   //   },
   //   logoURI: '/logo.svg',
   // },
+  scrollsepolia: {
+    name: 'scrollsepolia',
+    chainId: 534351,
+    domainId: 534351,
+    protocol: ProtocolType.Ethereum,
+    rpcUrls: [
+      {
+        http: 'https://sepolia-rpc.scroll.io',
+      },
+      {
+        http: 'https://scroll-public.scroll-testnet.quiknode.pro',
+      }
+    ],
+  },
 
   // Including configs for some Solana chains by default
   solana: {
