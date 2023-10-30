@@ -1,6 +1,6 @@
 {
   "name": "@hyperlane-xyz/warp-ui-template",
-  "description": "xUSD app (built with hyperlane template)",
+  "description": "xUSD app (testnet)",
   "version": "1.5.3",
   "author": "J M Rossy",
   "dependencies": {
@@ -21,6 +21,7 @@
     "axios": "^1.5.1",
     "bignumber.js": "^9.0.2",
     "buffer": "^6.0.3",
+    "clipboard-copy": "^4.0.1",
     "ethers": "^5.7.2",
     "formik": "^2.2.9",
     "moralis": "^2.23.1",

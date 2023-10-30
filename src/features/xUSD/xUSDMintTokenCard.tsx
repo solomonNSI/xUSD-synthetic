@@ -10,66 +10,75 @@ import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Card } from '../../components/layout/Card';
 import { logger } from '../../utils/logger';
+import { XUSDLoader } from './xUSDLoader';
+import { XUSDModal } from './xUSDModal';
 
 function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
   tokenOptions: any;
   chainIDs: any;
 }) {
   const [tokenValue, setTokenValue] = useState(0.0);
+  const [strTokenValue, setStrTokenValue] = useState("");
+
   const [xUSDValue, setxUSDValue] = useState(0.0);
-  const [selectedToken, setSelectedToken] = useState('goerli');
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isMintSuccess, setIsMintSuccess] = useState(false);
-  const [isGASMintSuccess, setIsGASMintSuccess] = useState(true);
-  
+  const [selectedToken, setSelectedToken] = useState('arbitrumgoerli');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [txHash, setTxHash] = useState("")
+  const [isLoaderModalOpen, setIsLoaderModalOpen] = useState(false)
+  const [insideText, setInsideText] = useState("Awesome! You will now receive a wallet pop-up to sign the transaction")
+
   useEffect(() => {
     if (!tokenValue || isNaN(tokenValue)) {
       setTokenValue(0);
       setxUSDValue(0);
     } else if (tokenValue && !isNaN(tokenValue)) {
-      setxUSDValue(parseFloat((tokenValue * 1608).toFixed(2)));
+      setxUSDValue(parseFloat((tokenValue * 1806.2).toFixed(2)));
     }
   }, [tokenValue, selectedToken]);
   
-  const prepareTransactionConfig = {
-    request: {
-      chainId: chainIDs[selectedToken], // Replace with your desired chain ID
-      to: '0xB038D8FA580BBC5a77FB9E103AC813865ad2240E', // Replace with the recipient's address or ENS name
-      value: utils.parseEther(tokenValue.toFixed(2)) || utils.parseEther('0.1'), // Replace with the amount you want to send
-    }
-  };
 
   const { address } = useAccount();
   
   const handleTransfer = async (e: any) => {
     e.preventDefault();
     try{
+      setIsLoaderModalOpen(true);
+      const prepareTransactionConfig = {
+        request: {
+          chainId: chainIDs[selectedToken], 
+          to: '0xc9326acD1a9245Ca117c9d041c2fb26C7fC1ed4D',
+          value: utils.parseEther(tokenValue.toFixed(4)), 
+        }
+      };
+
       const config = await prepareSendTransaction(prepareTransactionConfig);
       const chain  = await getNetwork();
-      if(chain?.chain?.id != chainIDs[selectedToken]){
-        await switchNetwork({ chainId: 5 });
-      }
+      
+      if(chain?.chain?.id != chainIDs[selectedToken]){ await switchNetwork({ chainId: 421613 });}
       const result = await sendTransaction( config);
+      setIsLoaderModalOpen(false);
       const isSuccess = await waitForTransaction({hash: result?.hash,})
+      
       if(isSuccess?.transactionHash){
-        setIsSuccess(true);
+        setInsideText("It all went smooth, now we're going to mint your tokens!")
+        setIsLoaderModalOpen(true);
       }
+      
       const burnData = {
         receiverAddress: address,
         amount: xUSDValue,
         amountOfETH: tokenValue,
-        priceOfEth: 1608.20,
+        priceOfEth: 1806.20,
       };
 
-      await Axios.post('https://xusd-back-iy4hgrqm3a-lz.a.run.app/api/token/mint', burnData)
-      .then(function (response){
-        if(response.status == 200){
-          setIsMintSuccess(true);
-        } else{
-          setIsGASMintSuccess(false);
-        }
+      await Axios.post('http://localhost:8080/api/token/mint', burnData)
+        .then(function (response){
+          if(response.status == 200){
+            setIsLoaderModalOpen(false);
+            setTxHash(response.data.txHash);
+            setIsModalOpen(true);
+          }
       })
-
     } catch (error){
       logger.error("error minting: ", error);
     }
@@ -86,10 +95,12 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
         <div className="flex items-center space-x-2">
           <input
             type="number"
-            value={tokenValue}
+            placeholder='0'
+            value={strTokenValue}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={(ev) => {
               const input = ev.target.value;
+              setStrTokenValue(input);
               if (/^-?\d*\.?\d*$/.test(input)) {
                 setTokenValue(parseFloat(ev.target.value) || 0);
               }}}
@@ -101,7 +112,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
           >
             {tokenOptions.map((token) => (
               <option key={token} value={token}>
-                {token.toUpperCase()} ETH
+                ETH
               </option>
             ))}
           </select>
@@ -135,22 +146,8 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
         </div>
         <br/> 
       </form>
-      {isSuccess && (
-        <div>
-          <span>Succesfully transferred ETH</span>
-        </div>
-      )}
-      {isMintSuccess && (
-        <div>
-          <span>Succesfully minted xUSD</span>
-          <span> add token with this address: 0x9435c5C968F1fc6B8fB709b6612FE89d977d204c </span>
-        </div>
-      )}
-      {!isGASMintSuccess && (
-        <div>
-          <span>Problem with gas right now, try minting xUSD later</span>
-        </div>
-      )}
+      <XUSDModal isOpen={isModalOpen} close={() => setIsModalOpen(false)} title="Minting xUSD" txHash={txHash} MintOrBurn='Minted succesfully'/>
+      <XUSDLoader isOpen={isLoaderModalOpen} close={() => setIsLoaderModalOpen(false)} title="Loading" insideText={insideText}/>
     </Card>
   );
 }

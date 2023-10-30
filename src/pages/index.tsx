@@ -3,7 +3,6 @@ import { useMemo, useState } from 'react';
 import { BurnTipCard } from "../components/tip/BurnTipCard";
 import { MintTipCard } from '../components/tip/MintTipCard';
 import AnotherTokenCard from '../features/another/AnotherTokenCard';
-import { TransferTokenCard } from '../features/transfer/TransferTokenCard';
 import { XUSDBurnTokenCard } from '../features/xUSD/xUSDBurnTokenCard';
 import XUSDMintTokenCard from '../features/xUSD/xUSDMintTokenCard';
 
@@ -19,26 +18,17 @@ export const Button = ({ onClick, title, text, chosen }) => (
 );
 
 const Home: NextPage = () => {
-  const [currentPage, setCurrentPage] = useState('mint'); // Default to 'tip';
-  
-  // const [ethToUsdRate, setEthToUsdRate] = useState(true);
-  const tokenOptions = ['goerli', 'arbitrumgoerli', 'mumbai', 'scroll', 'zkevm', 'mantle'];
+  const [currentPage, setCurrentPage] = useState('mint');
+  const tokenOptions = ['arbitrumgoerli'];
   
   const chainIDs = useMemo(() => ({
-    'goerli': 5,
+    // 'goerli': 5,
+    // 'mumbai': 80001,
+    // 'scroll':534351,
+    // 'zkevm': 1442,
+    // 'mantle': 5001
     'arbitrumgoerli': 421613,
-    'mumbai': 80001,
-    'scroll':534351,
-    'zkevm': 1442,
-    'mantle': 5001
   }), []);
-
-  // const chainToToken = useMemo(() => ({
-  //   'goerli': 'ETH',
-  //   'arbitrumgoerli': 'ETH',
-  //   'mumbai': 'ETH',
-  //   'scroll': 'ETH',
-  // }), []);
 
   return (
     <div className="space-y-2">
@@ -55,12 +45,12 @@ const Home: NextPage = () => {
         text="Burn xUSD"
         chosen={currentPage === 'burn'}
       />
-      <Button
+      {/* <Button
         onClick={() => setCurrentPage('cross')}
         title="crosschain"
         text="Cross Chain"
         chosen={currentPage === 'cross'}
-      />
+      /> */}
       <Button
         onClick={() => setCurrentPage('soon')}
         title="lendborrow"
@@ -88,15 +78,12 @@ const Home: NextPage = () => {
             </div>
           </>
         )}
-        {currentPage === 'cross' && (
-          <>
-            <TransferTokenCard />
-            {/* <TipCard /> */}
-          </>
-        )}
         {currentPage === 'soon' && (
             <AnotherTokenCard />
         )}
+      </div>
+      <div className='py-6'>
+        Add xUSD: 0xE8f26Ded1e51F8FADF468501Cd516c111e834cF3
       </div>
     </div>
   );

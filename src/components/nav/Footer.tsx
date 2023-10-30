@@ -12,9 +12,6 @@ export function Footer() {
             <p className="leading-6 font-bold">
               Copyright @ BankerSmith, 2023
             </p>
-            <p className="italic">
-              built with Hyperlane template
-            </p>
           </div>
         </div>
         <div className="flex">

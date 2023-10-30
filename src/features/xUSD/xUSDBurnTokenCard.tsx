@@ -3,37 +3,44 @@ import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Card } from '../../components/layout/Card';
 import { logger } from '../../utils/logger';
+import { XUSDModal } from './xUSDModal';
 
 export function XUSDBurnTokenCard({  tokenOptions }: {
   tokenOptions: any;
 }) {
-  const [tokenValue, setTokenValue] = useState(0);
-  const [xUSDValue, setxUSDValue] = useState(0);
+  const [tokenValue, setTokenValue] = useState(0.0);
+  const [xUSDValue, setxUSDValue] = useState(0.0);
+  const [strXUSDValue, setStrXUSDValue] = useState('');
+
   const [selectedToken, setSelectedToken] = useState('eth');
   const { address } = useAccount();
-  const [isSuccess, setIsSuccess] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [txHash, setTxHash] = useState("")
 
   useEffect(() => {
     if (!xUSDValue || isNaN(xUSDValue)) {
       setTokenValue(0);
       setxUSDValue(0);
     } else if (xUSDValue && !isNaN(xUSDValue)) {
-      setTokenValue(parseFloat((xUSDValue / 1608).toFixed(2)));
+      setTokenValue(parseFloat((xUSDValue / 1806.20).toFixed(5)));
     }
   }, [xUSDValue, selectedToken]);
   
-  const handleBurn = async () => {
+  const handleBurn = async (e: any) => {
+    e.preventDefault();
     const burnData = {
       burnerAddress: address,
       amount: xUSDValue,
       amountOfETH: tokenValue,
-      priceOfEth: 1608.20,
+      priceOfEth: 1806.20,
     };
     try{
-      await Axios.post('https://xusd-back-iy4hgrqm3a-lz.a.run.app/api/token/burn', burnData)
+      await Axios.post('http://localhost:8080/api/token/burn', burnData)
         .then(function (response){
           if(response.status == 200){
-            setIsSuccess(true);
+            setTxHash(response.data.txHash);
+            setIsModalOpen(true);
           }
         })
     } catch (error) {
@@ -53,12 +60,15 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
           <input
             type="number"
             placeholder="0.0"
-            value={xUSDValue}
+            value={strXUSDValue}
             className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
             onChange={(ev) => {
               const input = ev.target.value;
+              setStrXUSDValue(input);
               if (/^-?\d*\.?\d*$/.test(input)) {
-                setxUSDValue(parseFloat(ev.target.value) || 0);
+                const value = parseFloat(input);
+                if (!isNaN(value)) { setxUSDValue(value);
+                } else {setxUSDValue(0);}
               }}}
           />
           <select
@@ -88,7 +98,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
           >
             {tokenOptions.map((token) => (
               <option key={token} value={token}>
-                {token.toUpperCase()}
+                ETH
               </option>
             ))}
           </select>
@@ -101,11 +111,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
         </div>
         <br/>
       </form>
-      {isSuccess && (
-        <div>
-          xUSD burned succesfully!
-        </div>
-      )}
+      <XUSDModal isOpen={isModalOpen} close={() => setIsModalOpen(false)} title="Burning xUSD" txHash={txHash} MintOrBurn='Burned succesfully'/>  
     </Card>
   );
 }
