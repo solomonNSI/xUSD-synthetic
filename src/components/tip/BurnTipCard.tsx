@@ -16,13 +16,16 @@ export function BurnTipCard() {
             The protocol:
           </p>
           <p className='py-2'>
+           - Takes xUSD from the user
+          </p>
+          <p className='py-2'>
             - Closes the delta-neutral position
           </p>
           <p className='py-2'>
             - Returns ETH deposited by user
           </p>
           <p className='py-2'>
-            - Burns xUSD from user&apos;s wallet
+            - Burns xUSDs
           </p>
         </div>
 
