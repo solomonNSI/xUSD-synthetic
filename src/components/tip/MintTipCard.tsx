@@ -22,7 +22,7 @@ export function MintTipCard() {
             - Opens a delta-neutral position
           </p>
           <p className='py-2'>
-            - Mints xUSD from user&apos;s wallet
+            - Mints xUSD to user&apos;s wallet
           </p>
 
         </div>
