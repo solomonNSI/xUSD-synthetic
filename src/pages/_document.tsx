@@ -15,27 +15,25 @@ export default function Document() {
         <meta name="msapplication-TileColor" content="#025aa1" />
         <meta name="theme-color" content="#ffffff" />
 
-        <meta name="application-name" content="Hyperlane Warp Template UI" />
+        <meta name="application-name" content="xUSD by Banker Smith v0.0.1" />
         <meta
           name="keywords"
           content="xUSD by Banker Smith App"
         />
         <meta
           name="description"
-          content="A web app template for building Hyperlane Warp Route UIs"
+          content="A web app for minting/burning xUSD"
         />
 
         <meta name="HandheldFriendly" content="true" />
-        <meta name="apple-mobile-web-app-title" content="Hyperlane Warp Template UI" />
+        <meta name="apple-mobile-web-app-title" content="xUSD by Banker Smith v0.0.1" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
 
-        <meta property="og:url" content="https://warp.hyperlane.xyz" />
-        <meta property="og:title" content="Hyperlane Warp Template UI" />
+        <meta property="og:title" content="xUSD by Banker Smith v0.0.1" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://warp.hyperlane.xyz/icon.png" />
         <meta
           property="og:description"
-          content="A web app template for building Hyperlane Warp Route UIs"
+          content="A web app for minting/burning xUSD"
         />
       </Head>
       <body className="text-black">
