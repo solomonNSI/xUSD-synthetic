@@ -10,7 +10,7 @@ import XUSDMintTokenCard from '../features/xUSD/xUSDMintTokenCard';
 
 export const Button = ({ onClick, title, text, chosen }) => (
   <button
-    className={`sm:text-lg text-lg py-1.5 px-2.5`}
+    className={`sm:text-lg text-lg py-1.5 px-2.5 hover:bg-gray-200`}
     style={{ textDecoration: chosen ? 'underline' : 'none' }}
     onClick={onClick}
     title={title}
@@ -87,7 +87,7 @@ const Home: NextPage = () => {
       <div className='flex flex-row py-8'>
         <Image src={Logo} width={35} height={35} alt=""/>
         <span className='pl-2 py-2'>
-          xUSD: 0xE8f26Ded1e51F8FADF468501Cd516c111e834cF3
+          xUSD token address: 0xE8f26Ded1e51F8FADF468501Cd516c111e834cF3
         </span> 
       </div>
     </div>

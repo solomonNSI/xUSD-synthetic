@@ -140,7 +140,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
         </div>
         <br/>
         <div className="flex flex-grow items-center justify-center">
-          <button className="pr-2 pl-2 rounded-lg py-2 bg-red-300 text-lg text-white" onClick={handleTransfer}>
+          <button className="pr-2 pl-2 rounded-lg py-2 bg-red-300 hover:bg-gray-200 text-lg text-white" onClick={handleTransfer}>
             Mint xUSD
           </button>
         </div>

@@ -9,11 +9,22 @@ export function MintTipCard() {
   if (!show) return null;
   return (
     <div className="relative px-3 py-3 w-90 bg-yellow-100 shadow-lg rounded-xl opacity-95">
-      <h2 className="text-black sm:text-lg">Mint xUSD:</h2>
+      <h2 className="text-black sm:text-lg text-center">Minting xUSD!</h2>
       <div className="flex items-end justify-between ">
-        <p className="text-black mt-1.5 text-xs sm:text-sm max-w-[70%]">
-          Once on mainnet, your deposited Ethereum will be deposited as a collateral and used for the delta-neutral mechanism
-        </p>
+        <div className='px-3 py-3'>
+          <p className="text-black mt-1.5 text-xs sm:text-sm max-w-[80%]">
+            The protocol:
+          </p>
+          <p className='py-2'>
+            - Takes ETH deposited by user
+          </p>
+          <p className='py-2'>
+            - Opens a delta-neutral position
+          </p>
+          <p className='py-2'> 
+            - Mints xUSD from user's wallet
+          </p>
+        </div>
         {/* <a
           href={links.memo}
           target="_blank"

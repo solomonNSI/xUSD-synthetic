@@ -1,9 +1,6 @@
-import Image from 'next/image';
 import { useState } from 'react';
 
 import { config } from '../../consts/config';
-import { links } from '../../consts/links';
-import InfoCircle from '../../images/icons/info-circle.svg';
 import XCircle from '../../images/icons/x-circle.svg';
 import { IconButton } from '../buttons/IconButton';
 
@@ -12,12 +9,24 @@ export function BurnTipCard() {
   if (!show) return null;
   return (
     <div className="relative px-3 py-3 w-90 bg-yellow-100 shadow-lg rounded-xl opacity-95">
-      <h2 className="text-black sm:text-lg">Alpha Tip: Try minting xUSD!</h2>
+      <h2 className="text-black sm:text-lg text-center">Burning xUSD!</h2>
       <div className="flex items-end justify-between ">
-        <p className="text-black mt-1.5 text-xs sm:text-sm max-w-[70%]">
-          Be a holder of a synthetic USD that offers capital efficiency ...
-        </p>
-        <a
+        <div className='px-3 py-3'>
+          <p className="text-black mt-1.5 text-xs sm:text-sm max-w-[80%]">
+            The protocol:
+          </p>
+          <p className='py-2'>
+            - Closes the delta-neutral position
+          </p>
+          <p className='py-2'>
+            - Returns ETH deposited by user
+          </p>
+          <p className='py-2'>
+            - Burns xUSD from user's wallet
+          </p>
+        </div>
+
+        {/* <a
           href={links.memo}
           target="_blank"
           rel="noopener noreferrer"
@@ -25,9 +34,9 @@ export function BurnTipCard() {
         >
           <Image src={InfoCircle} width={14} alt="" />
           <span className="ml-1">Learn More</span>
-        </a>
+        </a> */}
       </div>
-      <div className="absolute right-3 top-3 invert">
+      <div className="absolute right-3 top-3">
         <IconButton
           imgSrc={XCircle}
           onClick={() => setShow(false)}
