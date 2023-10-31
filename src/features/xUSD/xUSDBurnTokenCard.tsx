@@ -36,7 +36,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
       priceOfEth: 1806.20,
     };
     try{
-      await Axios.post('http://localhost:8080/api/token/burn', burnData)
+      await Axios.post('https://xusd-back-iy4hgrqm3a-lz.a.run.app/api/token/burn', burnData)
         .then(function (response){
           if(response.status == 200){
             setTxHash(response.data.txHash);

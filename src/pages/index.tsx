@@ -1,5 +1,7 @@
 import type { NextPage } from 'next';
+import Image from 'next/image';
 import { useMemo, useState } from 'react';
+import Logo from '../../public/coin-logo.jpg';
 import { BurnTipCard } from "../components/tip/BurnTipCard";
 import { MintTipCard } from '../components/tip/MintTipCard';
 import AnotherTokenCard from '../features/another/AnotherTokenCard';
@@ -82,8 +84,11 @@ const Home: NextPage = () => {
             <AnotherTokenCard />
         )}
       </div>
-      <div className='py-6'>
-        Add xUSD: 0xE8f26Ded1e51F8FADF468501Cd516c111e834cF3
+      <div className='flex flex-row py-8'>
+        <Image src={Logo} width={35} height={35} alt=""/>
+        <span className='pl-2 py-2'>
+          xUSD: 0xE8f26Ded1e51F8FADF468501Cd516c111e834cF3
+        </span> 
       </div>
     </div>
   );

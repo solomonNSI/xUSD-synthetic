@@ -71,7 +71,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
         priceOfEth: 1806.20,
       };
 
-      await Axios.post('http://localhost:8080/api/token/mint', burnData)
+      await Axios.post('https://xusd-back-iy4hgrqm3a-lz.a.run.app/api/token/mint', burnData)
         .then(function (response){
           if(response.status == 200){
             setIsLoaderModalOpen(false);
