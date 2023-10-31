@@ -12,7 +12,7 @@ export function MintTipCard() {
       <h2 className="text-black sm:text-lg">Mint xUSD:</h2>
       <div className="flex items-end justify-between ">
         <p className="text-black mt-1.5 text-xs sm:text-sm max-w-[70%]">
-          will be issued and transferred from arbitrum one, you can transfer on any chain later
+          Once on mainnet, your deposited Ethereum will be deposited as a collateral and used for the delta-neutral mechanism
         </p>
         {/* <a
           href={links.memo}
