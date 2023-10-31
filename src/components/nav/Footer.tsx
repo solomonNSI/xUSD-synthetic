@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { links } from '../../consts/links';
+import Github from '../../images/logos/github.svg';
+import Medium from '../../images/logos/notion.svg';
 import Twitter from '../../images/logos/twitter.svg';
 
 export function Footer() {
@@ -16,10 +18,14 @@ export function Footer() {
         </div>
         <div className="flex">
           <div className="flex flex-col">
+          <FooterLink href={links.home} text="About" />
             <FooterLink href={links.explorer} text="Guideline" />
+            <FooterLink href={links.blog} text="Pitch Deck" />
           </div>
           <div className="flex flex-col ml-16">
             <FooterIconLink href={links.twitter} imgSrc={Twitter} text="Twitter" />
+            <FooterIconLink href={links.github} imgSrc={Github} text="Github" />
+            <FooterIconLink href={links.memo} imgSrc={Medium} text="Investor Memo" />
           </div>
         </div>
       </div>
