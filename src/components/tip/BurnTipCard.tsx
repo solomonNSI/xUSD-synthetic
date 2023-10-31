@@ -22,7 +22,7 @@ export function BurnTipCard() {
             - Returns ETH deposited by user
           </p>
           <p className='py-2'>
-            - Burns xUSD from user's wallet
+            - Burns xUSD from user&apos;s wallet
           </p>
         </div>
 

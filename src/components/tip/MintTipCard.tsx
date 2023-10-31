@@ -21,9 +21,10 @@ export function MintTipCard() {
           <p className='py-2'>
             - Opens a delta-neutral position
           </p>
-          <p className='py-2'> 
-            - Mints xUSD from user's wallet
+          <p className='py-2'>
+            - Mints xUSD from user&apos;s wallet
           </p>
+
         </div>
         {/* <a
           href={links.memo}
