@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Card } from '../../components/layout/Card';
 import { logger } from '../../utils/logger';
+import { XUSDLoader } from './xUSDLoader';
 import { XUSDModal } from './xUSDModal';
 
 export function XUSDBurnTokenCard({  tokenOptions }: {
@@ -15,6 +16,8 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
 
   const [selectedToken, setSelectedToken] = useState('eth');
   const { address } = useAccount();
+
+  const [loader, setIsLoader] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [txHash, setTxHash] = useState("")
@@ -31,6 +34,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
 
   const handleBurn = async (e: any) => {
     e.preventDefault();
+    setIsLoader(true);
     const chain  = await getNetwork();
 
     const burnData = {
@@ -45,6 +49,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
         .then(function (response){
           if(response.status == 200){
             setTxHash(response.data.txHash);
+            setIsLoader(false);
             setIsModalOpen(true);
           }
         })
@@ -117,6 +122,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
         <br/>
       </form>
       <XUSDModal isOpen={isModalOpen} close={() => setIsModalOpen(false)} title="Burning xUSD" txHash={txHash} MintOrBurn='Burned succesfully'/>  
+      <XUSDLoader isOpen={loader} close={() => setIsLoader(false)} title="Loading" insideText='Your eth is being returned' />
     </Card>
   );
 }
