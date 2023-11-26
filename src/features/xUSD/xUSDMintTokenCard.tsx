@@ -31,7 +31,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
       setTokenValue(0);
       setxUSDValue(0);
     } else if (tokenValue && !isNaN(tokenValue)) {
-      setxUSDValue(parseFloat((tokenValue * 1806.2).toFixed(2)));
+      setxUSDValue(parseFloat((tokenValue * 2080.57).toFixed(2)));
     }
   }, [tokenValue, selectedToken]);
   
@@ -67,7 +67,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
         receiverAddress: address,
         amount: xUSDValue,
         amountOfETH: tokenValue,
-        priceOfEth: 1806.20,
+        priceOfEth: 2080.57,
         chain: chain?.chain?.network,
       };
 

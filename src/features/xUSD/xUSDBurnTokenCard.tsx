@@ -24,7 +24,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
       setTokenValue(0);
       setxUSDValue(0);
     } else if (xUSDValue && !isNaN(xUSDValue)) {
-      setTokenValue(parseFloat((xUSDValue / 1806.20).toFixed(5)));
+      setTokenValue(parseFloat((xUSDValue / 2080.57).toFixed(5)));
     }
   }, [xUSDValue, selectedToken]);
   
@@ -37,7 +37,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
       burnerAddress: address,
       amount: xUSDValue,
       amountOfETH: tokenValue,
-      priceOfEth: 1806.20,
+      priceOfEth: 2080.57,
       chain: chain?.chain?.network,
     };
     try{
