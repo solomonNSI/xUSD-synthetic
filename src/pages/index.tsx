@@ -21,15 +21,17 @@ export const Button = ({ onClick, title, text, chosen }) => (
 
 const Home: NextPage = () => {
   const [currentPage, setCurrentPage] = useState('mint');
-  const tokenOptions = ['arbitrumgoerli'];
+  const tokenOptions = ['goerli', 'base', 'linea'];
   
   const chainIDs = useMemo(() => ({
-    // 'goerli': 5,
+    'goerli': 5,
     // 'mumbai': 80001,
     // 'scroll':534351,
     // 'zkevm': 1442,
     // 'mantle': 5001
-    'arbitrumgoerli': 421613,
+    // 'arbitrumgoerli': 421613,
+    'base': 84532,
+    'linea': 59140,
   }), []);
 
   return (
@@ -87,7 +89,10 @@ const Home: NextPage = () => {
       <div className='flex flex-row py-8'>
         <Image src={Logo} width={35} height={35} alt=""/>
         <span className='pl-2 py-2'>
-          xUSD token address: 0xE8f26Ded1e51F8FADF468501Cd516c111e834cF3
+          xUSD token addresses:
+          - baseGoerli: 0x9435c5C968F1fc6B8fB709b6612FE89d977d204c
+          - lineaTestnet: 0x3c8F6070dEd3699F584656822c1b89d5aB3F3192
+          - goerli: 0x1C106456CebBe0991acfAA5297bE20A701aAaCD1
         </span> 
       </div>
     </div>

@@ -10,6 +10,13 @@ This app is built with Next+React, Wagmi, RainbowKit, and the Hyperlane SDK.
 - The primary features are implemented in `./src/features/`
 - Constants that you may want to change are in `./src/consts/`, see the following Customization section for details.
 
+# Addresses of xUSD
+For linea: 0x3c8F6070dEd3699F584656822c1b89d5aB3F3192
+
+For base: 0x9435c5C968F1fc6B8fB709b6612FE89d977d204c
+
+For goerli: 0x1C106456CebBe0991acfAA5297bE20A701aAaCD1
+
 ## Customization
 
 See [CUSTOMIZE.md](./CUSTOMIZE.md) for details about adjusting the tokens and branding of this app.

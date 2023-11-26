@@ -1,8 +1,7 @@
 import {
   getNetwork,
   prepareSendTransaction, sendTransaction,
-  switchNetwork,
-  waitForTransaction
+  switchNetwork
 } from '@wagmi/core';
 import Axios from 'axios';
 import { utils } from 'ethers';
@@ -21,7 +20,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
   const [strTokenValue, setStrTokenValue] = useState("");
 
   const [xUSDValue, setxUSDValue] = useState(0.0);
-  const [selectedToken, setSelectedToken] = useState('arbitrumgoerli');
+  const [selectedToken, setSelectedToken] = useState('goerli');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [txHash, setTxHash] = useState("")
   const [isLoaderModalOpen, setIsLoaderModalOpen] = useState(false)
@@ -46,32 +45,33 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
       const prepareTransactionConfig = {
         request: {
           chainId: chainIDs[selectedToken], 
-          to: '0xc9326acD1a9245Ca117c9d041c2fb26C7fC1ed4D',
+          to: '0xB038D8FA580BBC5a77FB9E103AC813865ad2240E',
           value: utils.parseEther(tokenValue.toFixed(4)), 
         }
       };
 
       const config = await prepareSendTransaction(prepareTransactionConfig);
       const chain  = await getNetwork();
-      
-      if(chain?.chain?.id != chainIDs[selectedToken]){ await switchNetwork({ chainId: 421613 });}
-      const result = await sendTransaction( config);
+
+      if(chain?.chain?.id != chainIDs[selectedToken]){ await switchNetwork({ chainId: chainIDs[selectedToken] });}
+      const result = await sendTransaction(config);
       setIsLoaderModalOpen(false);
-      const isSuccess = await waitForTransaction({hash: result?.hash,})
+      // const isSuccess = await waitForTransaction({hash: result?.hash,})
       
-      if(isSuccess?.transactionHash){
-        setInsideText("It all went smooth, now we're going to mint your tokens!")
-        setIsLoaderModalOpen(true);
-      }
-      
+      // if(isSuccess?.transactionHash){
+      //   setInsideText("It all went smooth, now we're going to mint your tokens!")
+      //   setIsLoaderModalOpen(true);
+      // }
+      console.log("yooo");
       const burnData = {
         receiverAddress: address,
         amount: xUSDValue,
         amountOfETH: tokenValue,
         priceOfEth: 1806.20,
+        chain: chain?.chain?.network,
       };
 
-      await Axios.post('https://xusd-back-iy4hgrqm3a-lz.a.run.app/api/token/mint', burnData)
+      await Axios.post('http://localhost:8080/api/token/mint', burnData)
         .then(function (response){
           if(response.status == 200){
             setIsLoaderModalOpen(false);
@@ -112,7 +112,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
           >
             {tokenOptions.map((token) => (
               <option key={token} value={token}>
-                ETH
+                {token} ETH
               </option>
             ))}
           </select>

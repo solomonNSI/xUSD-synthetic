@@ -1,3 +1,4 @@
+import { getNetwork } from '@wagmi/core';
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
@@ -27,16 +28,20 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
     }
   }, [xUSDValue, selectedToken]);
   
+
   const handleBurn = async (e: any) => {
     e.preventDefault();
+    const chain  = await getNetwork();
+
     const burnData = {
       burnerAddress: address,
       amount: xUSDValue,
       amountOfETH: tokenValue,
       priceOfEth: 1806.20,
+      chain: chain?.chain?.network,
     };
     try{
-      await Axios.post('https://xusd-back-iy4hgrqm3a-lz.a.run.app/api/token/burn', burnData)
+      await Axios.post('http://localhost:8080/api/token/burn', burnData)
         .then(function (response){
           if(response.status == 200){
             setTxHash(response.data.txHash);
@@ -98,7 +103,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
           >
             {tokenOptions.map((token) => (
               <option key={token} value={token}>
-                ETH
+                {token} ETH
               </option>
             ))}
           </select>
