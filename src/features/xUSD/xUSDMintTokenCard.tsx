@@ -45,7 +45,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
       const prepareTransactionConfig = {
         request: {
           chainId: chainIDs[selectedToken], 
-          to: '0xB038D8FA580BBC5a77FB9E103AC813865ad2240E',
+          to: '0xc9326acD1a9245Ca117c9d041c2fb26C7fC1ed4D',
           value: utils.parseEther(tokenValue.toFixed(4)), 
         }
       };
