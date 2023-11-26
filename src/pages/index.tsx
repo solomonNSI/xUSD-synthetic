@@ -87,7 +87,7 @@ const Home: NextPage = () => {
         )}
       </div>
       <div className='flex flex-row py-8'>
-        <Image src={Logo} width={35} height={35} alt=""/>
+        <Image src={Logo} width={40} height={40} alt=""/>
         <span className='pl-2 py-2'>
           xUSD token addresses:
           - baseGoerli: 0x9435c5C968F1fc6B8fB709b6612FE89d977d204c
