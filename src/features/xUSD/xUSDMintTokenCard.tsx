@@ -54,10 +54,10 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
       const chain  = await getNetwork();
 
       if(chain?.chain?.id != chainIDs[selectedToken]){ await switchNetwork({ chainId: chainIDs[selectedToken] });}
-      const result = await sendTransaction(config);
+      await sendTransaction(config);
       setIsLoaderModalOpen(false);
       // const isSuccess = await waitForTransaction({hash: result?.hash,})
-      
+      setInsideText("It all went smooth, now we're going to mint your tokens!")
       // if(isSuccess?.transactionHash){
       //   setInsideText("It all went smooth, now we're going to mint your tokens!")
       //   setIsLoaderModalOpen(true);
