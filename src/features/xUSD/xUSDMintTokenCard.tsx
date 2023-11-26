@@ -1,7 +1,8 @@
 import {
   getNetwork,
   prepareSendTransaction, sendTransaction,
-  switchNetwork
+  switchNetwork,
+  waitForTransaction
 } from '@wagmi/core';
 import Axios from 'axios';
 import { utils } from 'ethers';
@@ -24,6 +25,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [txHash, setTxHash] = useState("")
   const [isLoaderModalOpen, setIsLoaderModalOpen] = useState(false)
+  const [simpleLoader, setSimpleLoader] = useState(false);
   const [insideText, setInsideText] = useState("Awesome! You will now receive a wallet pop-up to sign the transaction")
 
   useEffect(() => {
@@ -54,14 +56,23 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
       const chain  = await getNetwork();
 
       if(chain?.chain?.id != chainIDs[selectedToken]){ await switchNetwork({ chainId: chainIDs[selectedToken] });}
-      await sendTransaction(config);
+      const result = await sendTransaction(config);
       setIsLoaderModalOpen(false);
-      // const isSuccess = await waitForTransaction({hash: result?.hash,})
-      setInsideText("It all went smooth, now we're going to mint your tokens!")
-      // if(isSuccess?.transactionHash){
-      //   setInsideText("It all went smooth, now we're going to mint your tokens!")
-      //   setIsLoaderModalOpen(true);
-      // }
+      setSimpleLoader(true);
+      console.log("selectedToken", chainIDs[selectedToken]);
+      let isSuccess;
+      if(chainIDs[selectedToken] == '5'){
+        isSuccess = await waitForTransaction({chainId: chainIDs[selectedToken], hash: result?.hash,})  
+      } else {
+        await new Promise(resolve => setTimeout(resolve, 6000));
+        isSuccess = true;
+      }
+      
+      if(isSuccess?.transactionHash || isSuccess == true){
+        setSimpleLoader(false);
+        setInsideText("It all went smooth, now we're going to mint your tokens!")
+        setIsLoaderModalOpen(true);
+      }
       console.log("yooo");
       const burnData = {
         receiverAddress: address,
@@ -148,6 +159,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
       </form>
       <XUSDModal isOpen={isModalOpen} close={() => setIsModalOpen(false)} title="Minting xUSD" txHash={txHash} MintOrBurn='Minted succesfully'/>
       <XUSDLoader isOpen={isLoaderModalOpen} close={() => setIsLoaderModalOpen(false)} title="Loading" insideText={insideText}/>
+      <XUSDLoader isOpen={simpleLoader} close={() => setSimpleLoader(false)} title="Loading" insideText={"Loading, please wait"}/>
     </Card>
   );
 }

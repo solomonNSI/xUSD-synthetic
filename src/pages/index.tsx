@@ -28,7 +28,7 @@ const Home: NextPage = () => {
     // 'zkevm': 1442,
     // 'mantle': 5001
     // 'arbitrumgoerli': 421613,
-    'base': 84532,
+    'base': 84531,
     'linea': 59140,
   }), []);
 
