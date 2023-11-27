@@ -6,5 +6,5 @@ export const links = {
   gasDocs: 'https://docs.hyperlane.xyz/docs/protocol/interchain-gas-payments',
   memo: 'https://bit.ly/bankersmithmemo',
   twitter: 'https://x.com/bankersmith?s=11',
-  blog: 'http://bit.ly/bankersmithpitch',
+  blog: 'https://docsend.com/view/r7mmbtxyijp8c4wx',
 };
