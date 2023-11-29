@@ -17,6 +17,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
   const [selectedToken, setSelectedToken] = useState('eth');
   const { address } = useAccount();
 
+  const backendURL = process?.env?.BACKEND_URL || "https://xusd-back-iy4hgrqm3a-lz.a.run.app";
   const [loader, setIsLoader] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,7 +46,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
       chain: chain?.chain?.network,
     };
     try{
-      await Axios.post('https://xusd-back-iy4hgrqm3a-lz.a.run.app/api/token/burn', burnData)
+      await Axios.post(backendURL + '/api/token/burn', burnData)
         .then(function (response){
           if(response.status == 200){
             setTxHash(response.data.txHash);

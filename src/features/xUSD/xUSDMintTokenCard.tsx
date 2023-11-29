@@ -37,7 +37,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
     }
   }, [tokenValue, selectedToken]);
   
-
+  const backendURL = process?.env?.BACKEND_URL || "https://xusd-back-iy4hgrqm3a-lz.a.run.app";
   const { address } = useAccount();
   
   const handleTransfer = async (e: any) => {
@@ -82,7 +82,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
         chain: chain?.chain?.network,
       };
 
-      await Axios.post('https://xusd-back-iy4hgrqm3a-lz.a.run.app/api/token/mint', burnData)
+      await Axios.post(backendURL + '/api/token/mint', burnData)
         .then(function (response){
           if(response.status == 200){
             setIsLoaderModalOpen(false);
