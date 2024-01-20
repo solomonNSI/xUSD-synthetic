@@ -17,7 +17,7 @@ export function XUSDBurnTokenCard({  tokenOptions }: {
   const [selectedToken, setSelectedToken] = useState('eth');
   const { address } = useAccount();
 
-  const backendURL = process?.env?.BACKEND_URL || "https://xusd-back-iy4hgrqm3a-lz.a.run.app";
+  const backendURL = process?.env?.BACKEND_URL || "http://localhost:8080";
   const [loader, setIsLoader] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);

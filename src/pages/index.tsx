@@ -1,7 +1,5 @@
 import type { NextPage } from 'next';
 import { useMemo, useState } from 'react';
-import { BurnTipCard } from "../components/tip/BurnTipCard";
-import { MintTipCard } from '../components/tip/MintTipCard';
 import AnotherTokenCard from '../features/another/AnotherTokenCard';
 import { XUSDBurnTokenCard } from '../features/xUSD/xUSDBurnTokenCard';
 import XUSDMintTokenCard from '../features/xUSD/xUSDMintTokenCard';
@@ -65,10 +63,10 @@ const Home: NextPage = () => {
         {currentPage === 'mint' && (
           <>
             <XUSDMintTokenCard  tokenOptions={tokenOptions} chainIDs={chainIDs}/>
-            <div className="flex items-center flex-col justify-center">
+            {/* <div className="flex items-center flex-col justify-center">
               <br/>
               <MintTipCard />
-            </div>
+            </div> */}
           </>
         )}
         {currentPage === 'burn' && (
@@ -76,7 +74,7 @@ const Home: NextPage = () => {
             <XUSDBurnTokenCard tokenOptions={tokenOptions}/>
             <div className="flex items-center flex-col justify-center"> {/* Centering container */}
               <br/>
-              <BurnTipCard />
+              {/* <BurnTipCard /> */}
             </div>
           </>
         )}

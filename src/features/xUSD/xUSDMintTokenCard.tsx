@@ -37,7 +37,7 @@ function XUSDMintTokenCard({ tokenOptions, chainIDs }: {
     }
   }, [tokenValue, selectedToken]);
   
-  const backendURL = process?.env?.BACKEND_URL || "https://xusd-back-iy4hgrqm3a-lz.a.run.app";
+  const backendURL = process?.env?.BACKEND_URL || "http://localhost:8080";
   const { address } = useAccount();
   
   const handleTransfer = async (e: any) => {
